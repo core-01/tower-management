@@ -1,0 +1,1 @@
+-- SQL placeholder to create tables like towers, vendors, operators, etc.
