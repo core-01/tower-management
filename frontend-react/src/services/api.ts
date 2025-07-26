@@ -36,9 +36,12 @@ api.interceptors.response.use(
 );
 
 export const towerService = {
-  async getTowers(params: PaginationParams): Promise<ApiResponse<Tower[]>> {
-    const response = await api.get('/towers', { params });
-    return response.data;
+  async getTowers(params: PaginationParams): Promise<{ data: Tower[]; total: number }> {
+    const response = await api.get<Tower[]>('/towers', { params });
+    return {
+      data: response.data,
+      total: response.data.length, 
+    };
   },
 
   async getTower(id: string): Promise<Tower> {

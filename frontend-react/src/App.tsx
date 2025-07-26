@@ -5,6 +5,8 @@ import { Dashboard } from './pages/Dashboard';
 import { TowerList } from './pages/TowerList';
 import { TowerForm } from './pages/TowerForm';
 import { TowerDetail } from './pages/TowerDetail';
+import ComingSoon from './pages/comingSoon';
+
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="towers/add" element={<TowerForm />} />
             <Route path="towers/:id" element={<TowerDetail />} />
             <Route path="towers/:id/edit" element={<TowerForm />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="*" element={<ComingSoon />} />
           </Route>
         </Routes>
       </div>

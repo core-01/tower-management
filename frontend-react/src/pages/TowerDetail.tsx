@@ -4,13 +4,13 @@ import { Card } from '../components/UI/Card';
 import { Button } from '../components/UI/Button';
 import { LoadingSkeleton } from '../components/UI/LoadingSkeleton';
 import { Tower, Tenant } from '../types';
-import { 
-  Edit, 
-  Trash2, 
-  MapPin, 
-  Calendar, 
-  Ruler, 
-  Users, 
+import {
+  Edit,
+  Trash2,
+  MapPin,
+  Calendar,
+  Ruler,
+  Users,
   Activity,
   ArrowLeft
 } from 'lucide-react';
@@ -182,7 +182,7 @@ export const TowerDetail: React.FC = () => {
               </h2>
               {getStatusBadge(tower.status)}
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
@@ -216,7 +216,7 @@ export const TowerDetail: React.FC = () => {
                     Installation Date
                   </label>
                   <p className="mt-1 text-sm text-gray-900 dark:text-white">
-                    {tower.installationDate 
+                    {tower.installationDate
                       ? new Date(tower.installationDate).toLocaleDateString()
                       : 'Not specified'
                     }
@@ -279,10 +279,12 @@ export const TowerDetail: React.FC = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-blue-600">
                 Tenants ({tower.tenants?.length || 0})
               </h2>
-              <Button size="sm">
-                <Users className="mr-2 h-4 w-4" />
-                Add Tenant
-              </Button>
+              <Link to="/coming-soon">
+                <Button size="sm">
+                  <Users className="mr-2 h-4 w-4" />
+                  Add Tenant
+                </Button>
+              </Link>
             </div>
 
             {tower.tenants && tower.tenants.length > 0 ? (
@@ -374,7 +376,7 @@ export const TowerDetail: React.FC = () => {
                   </span>
                 </div>
                 <span className="text-sm font-medium text-gray-900 dark:text-white">
-                  {tower.installationDate 
+                  {tower.installationDate
                     ? new Date(tower.installationDate).getFullYear()
                     : 'N/A'
                   }

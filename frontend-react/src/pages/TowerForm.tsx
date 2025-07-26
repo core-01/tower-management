@@ -45,7 +45,7 @@ export const TowerForm: React.FC = () => {
     defaultValues: {
       type: 'Monopole',
       status: 'Active',
-      // coordinates: { latitude: 0, longitude: 0 },
+      coordinates: { latitude: 0, longitude: 0 },
     },
   });
 
@@ -76,20 +76,31 @@ export const TowerForm: React.FC = () => {
     }
   }, [isEdit, id, setValue]);
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      if (isEdit && id) {
-        await towerService.updateTower(id, data);
-        toast.success('Tower updated successfully');
-      } else {
-        await towerService.createTower(data);
-        toast.success('Tower created successfully');
-      }
-      navigate('/towers');
-    } catch {
-      toast.error(isEdit ? 'Failed to update tower' : 'Failed to create tower');
-    }
+const onSubmit: SubmitHandler<FormData> = async (data) => {
+  console.log("Form Submitted", data);
+
+  // Flatten coordinates for backend
+  const payload = {
+    ...data,
+    latitude: data.coordinates.latitude,
+    longitude: data.coordinates.longitude,
   };
+  delete (payload as any).coordinates;
+
+  try {
+    if (isEdit && id) {
+      await towerService.updateTower(id, payload);
+      toast.success('Tower updated successfully');
+    } else {
+      await towerService.createTower(payload);
+      toast.success('Tower created successfully');
+    }
+    navigate('/towers');
+  } catch {
+    toast.error(isEdit ? 'Failed to update tower' : 'Failed to create tower');
+  }
+};
+
 
   // Extend native input/select/textarea props
   type FieldProps = React.InputHTMLAttributes<HTMLInputElement> &
